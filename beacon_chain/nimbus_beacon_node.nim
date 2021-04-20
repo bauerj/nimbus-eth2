@@ -1977,6 +1977,3 @@ programMain:
   of wallets: doWallets(config, rng[])
   of record: doRecord(config, rng[])
   of web3: doWeb3Cmd(config)
-
-# get a dep in the main build
-import ./eth2_merge_web3
