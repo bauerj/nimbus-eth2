@@ -30,13 +30,11 @@ const
   EVM_BLOCK_ROOTS_SIZE* = 8
 
 type
-  # https://github.com/ethereum/eth2.0-specs/blob/eca6bd7d622a0cfb7343bff742da046ed25b3825/specs/merge/beacon-chain.md#custom-types
-  # TODO is this maneuver sizeof()/memcpy()/SSZ-equivalent? Pretty sure, but not 100% certain
-  OpaqueTransaction* = object
-    data*: List[byte, MAX_BYTES_PER_OPAQUE_TRANSACTION]
+  # https://github.com/ethereum/eth2.0-specs/blob/dev/specs/merge/beacon-chain.md#custom-types
+  OpaqueTransaction* = List[byte, Limit MAX_BYTES_PER_OPAQUE_TRANSACTION]
 
   EthAddress* = object
-    data*: array[20, byte]  # TODO there's a network_metadata type, but the import hierarchy's inconvenient without splitting out aspects of this module
+    data*: array[20, byte]  # TODO there's a network_metadata type, but the import hierarchy's inconvenient
 
   BloomLogs* = object
     data*: array[BYTES_PER_LOGS_BLOOM, byte]

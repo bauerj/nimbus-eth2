@@ -279,7 +279,7 @@ func getOpaqueTransaction(s_orig: string): OpaqueTransaction =
   try:
     for c in parseHexStr(s).items():
       bytes.add byte(c)
-    OpaqueTransaction(data: List[byte, MAX_BYTES_PER_OPAQUE_TRANSACTION].init(
+    OpaqueTransaction(List[byte, MAX_BYTES_PER_OPAQUE_TRANSACTION].init(
       bytes))
   except ValueError:
     raiseAssert "Geth returned invalidly formatted transaction"
