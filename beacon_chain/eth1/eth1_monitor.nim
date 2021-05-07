@@ -427,6 +427,7 @@ proc newBlock*(p: Web3DataProviderRef,
                executableData: ExecutionPayload): Future[BoolReturnValidRPC] =
   var transactions: List[string, MAX_EXECUTION_TRANSACTIONS]
   # could just stream/iterate: TODO sequtils2 mapIt. or List.init(seq)
+  # TODO use init like the inverse one
   for s in mapIt(executableData.transactions, it.encodeOpaqueTransaction):
     discard transactions.add s  # max len enforcement already done
   let executableDataRPC = ExecutionPayloadRPC(
