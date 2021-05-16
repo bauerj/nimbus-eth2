@@ -485,14 +485,14 @@ proc installBeaconApiHandlers*(router: var RestRouter, node: BeaconNode) =
     node.withStateForBlockSlot(bslot):
       proc getCommittee(slot: Slot,
                        index: CommitteeIndex): RestBeaconStatesCommitteesTuple =
-        let validators = get_beacon_committee(state, slot, index,
+        let validators = get_beacon_committee(stateData.data.data, slot, index,
                                               cache).mapIt(it)
         (index: index, slot: slot, validators: validators)
 
       proc forSlot(slot: Slot, cindex: Option[CommitteeIndex],
                    res: var seq[RestBeaconStatesCommitteesTuple]) =
         let committees_per_slot =
-          get_committee_count_per_slot(state, Epoch(slot), cache)
+          get_committee_count_per_slot(stateData.data.data, Epoch(slot), cache)
 
         if cindex.isNone:
           for committee_index in 0'u64 ..< committees_per_slot:
