@@ -485,7 +485,7 @@ proc installBeaconApiHandlers*(router: var RestRouter, node: BeaconNode) =
     node.withStateForBlockSlot(bslot):
       proc getCommittee(slot: Slot,
                        index: CommitteeIndex): RestBeaconStatesCommitteesTuple =
-        let validators = get_beacon_committee(stateData.data.data, slot, index,
+        let validators = get_beacon_committee(stateData, slot, index,
                                               cache).mapIt(it)
         (index: index, slot: slot, validators: validators)
 
